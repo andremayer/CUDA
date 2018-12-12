@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{543F69E7-594E-43E1-835F-F8BB3A80CA6C}</ProjectGuid>
+    <RootNamespace>CUDA</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 10.0.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(OPENCV3_DIR)\include;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(OPENCV3_DIR)\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(OPENCV3_DIR)\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opencv_calib3d2413.lib;opencv_calib3d2413d.lib;opencv_contrib2413.lib;opencv_contrib2413d.lib;opencv_core2413.lib;opencv_core2413d.lib;opencv_features2d2413.lib;opencv_features2d2413d.lib;opencv_flann2413.lib;opencv_flann2413d.lib;opencv_gpu2413.lib;opencv_gpu2413d.lib;opencv_highgui2413.lib;opencv_highgui2413d.lib;opencv_imgproc2413.lib;opencv_imgproc2413d.lib;opencv_legacy2413.lib;opencv_legacy2413d.lib;opencv_ml2413.lib;opencv_ml2413d.lib;opencv_nonfree2413.lib;opencv_nonfree2413d.lib;opencv_objdetect2413.lib;opencv_objdetect2413d.lib;opencv_ocl2413.lib;opencv_ocl2413d.lib;opencv_photo2413.lib;opencv_photo2413d.lib;opencv_stitching2413.lib;opencv_stitching2413d.lib;opencv_superres2413.lib;opencv_superres2413d.lib;opencv_ts2413.lib;opencv_ts2413d.lib;opencv_video2413.lib;opencv_video2413d.lib;opencv_videostab2413.lib;opencv_videostab2413d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV3_DIR)\x64\vc14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <CudaCompile>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Include>$(OPENCV3_DIR)\include;%(Include)</Include>
+    </CudaCompile>
+    <CudaLink>
+      <AdditionalLibraryDirectories>$(OPENCV3_DIR)\x64\vc14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </CudaLink>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opencv_aruco400.lib;opencv_aruco400d.lib;opencv_bgsegm400.lib;opencv_bgsegm400d.lib;opencv_bioinspired400.lib;opencv_bioinspired400d.lib;opencv_calib3d400.lib;opencv_calib3d400d.lib;opencv_ccalib400.lib;opencv_ccalib400d.lib;opencv_core400.lib;opencv_core400d.lib;opencv_cudaarithm400.lib;opencv_cudaarithm400d.lib;opencv_cudabgsegm400.lib;opencv_cudabgsegm400d.lib;opencv_cudacodec400.lib;opencv_cudacodec400d.lib;opencv_cudafeatures2d400.lib;opencv_cudafeatures2d400d.lib;opencv_cudafilters400.lib;opencv_cudafilters400d.lib;opencv_cudaimgproc400.lib;opencv_cudaimgproc400d.lib;opencv_cudalegacy400.lib;opencv_cudalegacy400d.lib;opencv_cudaobjdetect400.lib;opencv_cudaobjdetect400d.lib;opencv_cudaoptflow400.lib;opencv_cudaoptflow400d.lib;opencv_cudastereo400.lib;opencv_cudastereo400d.lib;opencv_cudawarping400.lib;opencv_cudawarping400d.lib;opencv_cudev400.lib;opencv_cudev400d.lib;opencv_datasets400.lib;opencv_datasets400d.lib;opencv_dnn400.lib;opencv_dnn400d.lib;opencv_dnn_objdetect400.lib;opencv_dnn_objdetect400d.lib;opencv_dpm400.lib;opencv_dpm400d.lib;opencv_face400.lib;opencv_face400d.lib;opencv_features2d400.lib;opencv_features2d400d.lib;opencv_flann400.lib;opencv_flann400d.lib;opencv_fuzzy400.lib;opencv_fuzzy400d.lib;opencv_gapi400.lib;opencv_gapi400d.lib;opencv_hdf400.lib;opencv_hdf400d.lib;opencv_hfs400.lib;opencv_hfs400d.lib;opencv_highgui400.lib;opencv_highgui400d.lib;opencv_imgcodecs400.lib;opencv_imgcodecs400d.lib;opencv_imgproc400.lib;opencv_imgproc400d.lib;opencv_img_hash400.lib;opencv_img_hash400d.lib;opencv_line_descriptor400.lib;opencv_line_descriptor400d.lib;opencv_ml400.lib;opencv_ml400d.lib;opencv_objdetect400.lib;opencv_objdetect400d.lib;opencv_optflow400.lib;opencv_optflow400d.lib;opencv_phase_unwrapping400.lib;opencv_phase_unwrapping400d.lib;opencv_photo400.lib;opencv_photo400d.lib;opencv_plot400.lib;opencv_plot400d.lib;opencv_reg400.lib;opencv_reg400d.lib;opencv_rgbd400.lib;opencv_rgbd400d.lib;opencv_saliency400.lib;opencv_saliency400d.lib;opencv_shape400.lib;opencv_shape400d.lib;opencv_stereo400.lib;opencv_stereo400d.lib;opencv_stitching400.lib;opencv_stitching400d.lib;opencv_structured_light400.lib;opencv_structured_light400d.lib;opencv_superres400.lib;opencv_superres400d.lib;opencv_surface_matching400.lib;opencv_surface_matching400d.lib;opencv_text400.lib;opencv_text400d.lib;opencv_tracking400.lib;opencv_tracking400d.lib;opencv_video400.lib;opencv_video400d.lib;opencv_videoio400.lib;opencv_videoio400d.lib;opencv_videostab400.lib;opencv_videostab400d.lib;opencv_xfeatures2d400.lib;opencv_xfeatures2d400d.lib;opencv_ximgproc400.lib;opencv_ximgproc400d.lib;opencv_xobjdetect400.lib;opencv_xobjdetect400d.lib;opencv_xphoto400.lib;opencv_xphoto400d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV3_DIR)\x64\vc14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <CudaCompile>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CudaCompile Include="kernel.cu" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 10.0.targets" />
+  </ImportGroup>
+</Project>
